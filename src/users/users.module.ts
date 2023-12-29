@@ -3,9 +3,10 @@ import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { userProviders } from './entities/user.providers';
 import { DatabaseModule } from '../database/database.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [ConfigModule, DatabaseModule],
   controllers: [UsersController],
   providers: [
     ...userProviders,
