@@ -25,11 +25,11 @@ export class UsersService {
     if (query?.q) {
       console.log('go')
       options.where = []
-      options.where.push({firstname: Like("%" + query.q +"%")})
-      options.where.push({familyname: Like("%" + query.q +"%")})
-      options.where.push({firstnameKana: Like("%" + query.q +"%")})
-      options.where.push({familynameKana: Like("%" + query.q +"%")})
-      options.where.push({email: Like("%" + query.q +"%")})
+      options.where.push({firstname: Like(`%${query.q}%`)})
+      options.where.push({familyname: Like(`%${query.q}%`)})
+      options.where.push({firstnameKana: Like(`%${query.q}%`)})
+      options.where.push({familynameKana: Like(`%${query.q}%`)})
+      options.where.push({email: Like(`%${query.q}%`)})
     }
     options.skip = query?.offset ?? this.defaultOffset
     options.take = query?.limit ?? this.defaultLimit
