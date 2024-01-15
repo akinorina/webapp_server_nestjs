@@ -1,4 +1,5 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { EntityNotFoundError } from 'typeorm'
+import { Injectable, Inject, HttpStatus, HttpException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ListAllEntities } from './dto/list-all-entities.dto';
@@ -32,7 +33,13 @@ export class UsersService {
   }
 
   async findOne(id: number) {
-    return await this.userRepository.findOneByOrFail({ id: id })
+    try {
+      return await this.userRepository.findOneByOrFail({ id: id })
+    } catch (err) {
+      if (err instanceof EntityNotFoundError) {
+        throw new HttpException('Not Found', HttpStatus.NOT_FOUND)
+      }
+    }
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
