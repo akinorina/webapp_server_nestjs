@@ -7,7 +7,10 @@ export class AppService {
   constructor(private configService: ConfigService) { }
 
   getHello(): string {
-    Logger.debug(this.configService.get<string>('DATABASE_USER'), 'DATABASE_USER')
+    Logger.debug(this.configService.get<string>('port'), 'port')
+    Logger.debug(this.configService.get<string>('database.host'), 'database.host')
+    Logger.debug(this.configService.get<string>('database.port'), 'database.port')
+
     return 'Hello World!';
   }
 }
