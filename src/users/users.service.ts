@@ -1,9 +1,9 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { Repository } from 'typeorm';
+import { ListAllEntities } from './dto/list-all-entities.dto';
+import { Like, Repository } from 'typeorm';
 import { User } from './entities/user.entity';
-import { Certificate } from 'crypto';
 
 @Injectable()
 export class UsersService {
@@ -16,8 +16,17 @@ export class UsersService {
     return await this.userRepository.save(createUserDto)
   }
 
-  async findAll() {
-    return await this.userRepository.find()
+  async findAll(query: ListAllEntities) {
+    return await this.userRepository.findAndCount({
+      skip: query.offset,
+      take: query.limit,
+      where: [
+        { familyname: Like("%" + query.q + "%") },
+        { firstname: Like("%" + query.q + "%") },
+        { familynameKana: Like("%" + query.q + "%") },
+        { firstnameKana: Like("%" + query.q + "%") },
+      ]
+    })
   }
 
   async findOne(id: number) {
