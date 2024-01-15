@@ -1,12 +1,16 @@
 import { DataSource } from 'typeorm';
+import { databaseConfig } from '../config/DatabaseConfig'
+
+// DB設定 取得
+const dbconfig = databaseConfig()
 
 export const dataSource = new DataSource({
   type: 'mysql',
-  host: 'localhost',
-  port: 3306,
-  username: 'webapp',
-  password: 'webapp',
-  database: 'webapp',
+  host: dbconfig.database.host,
+  port: dbconfig.database.port,
+  username: dbconfig.database.dbuser,
+  password: dbconfig.database.dbpass,
+  database: dbconfig.database.dbname,
   entities: [
       __dirname + '/../**/*.entity{.ts,.js}',
   ],
