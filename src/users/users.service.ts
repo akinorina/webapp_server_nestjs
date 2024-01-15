@@ -17,16 +17,18 @@ export class UsersService {
   }
 
   async findAll(query: ListAllEntities) {
-    return await this.userRepository.findAndCount({
-      skip: query.offset,
-      take: query.limit,
-      where: [
+    const conditions = { skip: 0, take: 10, where: [] }
+    conditions.skip = +query.offset || 0
+    conditions.take = +query.limit || 10
+    if (query.q) {
+      conditions.where = [
         { familyname: Like("%" + query.q + "%") },
         { firstname: Like("%" + query.q + "%") },
         { familynameKana: Like("%" + query.q + "%") },
         { firstnameKana: Like("%" + query.q + "%") },
       ]
-    })
+    }
+    return await this.userRepository.findAndCount(conditions)
   }
 
   async findOne(id: number) {
