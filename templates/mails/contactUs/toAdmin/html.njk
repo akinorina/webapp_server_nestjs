@@ -1,0 +1,25 @@
+<p>お問い合わせがありましたので、お知らせいたします。</p>
+
+--- お問い合わせ内容 ---
+<table>
+<tr>
+<th>氏名</th>
+<td>{{ name | striptags(true) }}</td>
+</tr>
+<tr>
+<th>氏名よみがな</th>
+<td>{{ nameKana | striptags(true) }}</td>
+</tr>
+<tr>
+<th>メールアドレス</th>
+<td>{{ email | striptags(true) }}</td>
+</tr>
+<tr>
+<th>メッセージ</th>
+<td>{{ message | striptags(true) | escape | nl2br }}</td>
+</tr>
+</table>
+
+<hr />
+
+早急にお返事してください。
