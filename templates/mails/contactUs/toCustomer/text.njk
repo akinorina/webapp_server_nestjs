@@ -1,0 +1,13 @@
+お問い合わせありがとうございます。
+次の内容でお問い合わせいただきました：
+
+お問い合わせ内容
+氏名　　　　　： {{ name | striptags(true) }}
+氏名よみがな　： {{ nameKana | striptags(true) }}
+メールアドレス： {{ email | striptags(true) }}
+メッセージ　　： {{ message | striptags(true) | escape }}
+---
+本メールは自動返信メールです。
+お問い合わせいただいてから、４８時間以内に返答させていただきます。
+しばらくお待ちください。
+
