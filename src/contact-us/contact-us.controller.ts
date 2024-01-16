@@ -1,7 +1,8 @@
-import { Body, Controller, Post, Logger } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { ContactUsService } from './contact-us.service';
 import { SendMailSmtpDto } from 'src/smtp/dto/sendmail-smtp.dto'
 import { PostContactUsDto } from 'src/contact-us/dto/post-contact-us.dto'
+import * as nunjucks from 'nunjucks';
 
 @Controller('api/contact-us')
 export class ContactUsController {
@@ -34,19 +35,37 @@ export class ContactUsController {
 
   @Post('send')
   send(@Body() postContactUsDto: PostContactUsDto) {
-    // データ取得
-    Logger.debug(postContactUsDto)
+    const mailFrom = 'info@bright-century.com';
+    const mailToAdmin = 'akinori.nakata@bright-century.com';
+    const mailSubject = 'お問い合わせ';
 
-    // メールデータ作成
+    // template設定
+    nunjucks.configure('templates/mails/contactUs', { autoescape: false });
 
-    // メール送信
-    const sendMailSmtpDto: SendMailSmtpDto = {
-      from: 'akinori.nakata@bright-century.com',
-      to: 'akinori.na@gmail.com',
-      subject: 'お問い合わせ',
-      text: "本文が入ります。\n本文が入ります。\n本文が入ります。\n",
-      html: "本文が入ります。<br />\n本文が入ります。<br />\n本文が入ります。<br />\n",
+    // メール作成 to admin
+    const toAdminText = nunjucks.render('toAdmin/text.njk', postContactUsDto);
+    const toAdminHtml = nunjucks.render('toAdmin/html.njk', postContactUsDto);
+    let sendMailSmtpDto: SendMailSmtpDto = {
+      from: mailFrom,
+      to: mailToAdmin,
+      subject: mailSubject,
+      text: toAdminText,
+      html: toAdminHtml,
     }
-    return this.contactUsService.sendMail(sendMailSmtpDto);
+    // メール送信 to admin
+    this.contactUsService.sendMail(sendMailSmtpDto);
+
+    // メール作成 to customer
+    const toCustomerText = nunjucks.render('toCustomer/text.njk', postContactUsDto);
+    const toCustomerHtml = nunjucks.render('toCustomer/html.njk', postContactUsDto);
+    sendMailSmtpDto = {
+      from: mailFrom,
+      to: postContactUsDto.email,
+      subject: mailSubject,
+      text: toCustomerText,
+      html: toCustomerHtml,
+    }
+    // メール送信 to customer
+    this.contactUsService.sendMail(sendMailSmtpDto);
   }
 }

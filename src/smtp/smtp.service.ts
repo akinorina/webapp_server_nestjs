@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { SmtpConfig, smtpConfig } from 'src/config/SmtpConfig';
+import { SmtpConfig } from 'src/config/SmtpConfig';
 import { createTransport, Transporter } from 'nodemailer'
 import { SendMailSmtpDto } from './dto/sendmail-smtp.dto'
 
@@ -18,7 +18,7 @@ export class SmtpService {
   // メール送信
   async sendMail(sendMailSmtpDto: SendMailSmtpDto) {
     const info = await this.transporter.sendMail(sendMailSmtpDto)
-    Logger.debug(info, 'info')
+    // Logger.debug(info, 'info')
 
     return { result: 'success' }
   }
