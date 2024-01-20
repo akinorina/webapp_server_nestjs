@@ -1,4 +1,4 @@
-import 'dotenv/config'
+import 'dotenv/config';
 
 export interface DatabaseConfig {
   host: string;
@@ -16,6 +16,6 @@ export function databaseConfig() {
       dbuser: process.env.DATABASE_USER,
       dbpass: process.env.DATABASE_PASS,
       dbname: process.env.DATABASE_NAME,
-    }
-  }
+    },
+  };
 }

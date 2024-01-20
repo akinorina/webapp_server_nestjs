@@ -1,12 +1,12 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ContactUsService } from './contact-us.service';
-import { SendMailSmtpDto } from 'src/smtp/dto/sendmail-smtp.dto'
-import { PostContactUsDto } from 'src/contact-us/dto/post-contact-us.dto'
+import { SendMailSmtpDto } from 'src/smtp/dto/sendmail-smtp.dto';
+import { PostContactUsDto } from 'src/contact-us/dto/post-contact-us.dto';
 import * as nunjucks from 'nunjucks';
 
 @Controller('api/contact-us')
 export class ContactUsController {
-  constructor(private readonly contactUsService: ContactUsService) { }
+  constructor(private readonly contactUsService: ContactUsService) {}
 
   // @Post()
   // create(@Body() createContactUsDto: CreateContactUsDto) {
@@ -51,20 +51,26 @@ export class ContactUsController {
       subject: mailSubject,
       text: toAdminText,
       html: toAdminHtml,
-    }
+    };
     // メール送信 to admin
     this.contactUsService.sendMail(sendMailSmtpDto);
 
     // メール作成 to customer
-    const toCustomerText = nunjucks.render('toCustomer/text.njk', postContactUsDto);
-    const toCustomerHtml = nunjucks.render('toCustomer/html.njk', postContactUsDto);
+    const toCustomerText = nunjucks.render(
+      'toCustomer/text.njk',
+      postContactUsDto,
+    );
+    const toCustomerHtml = nunjucks.render(
+      'toCustomer/html.njk',
+      postContactUsDto,
+    );
     sendMailSmtpDto = {
       from: mailFrom,
       to: postContactUsDto.email,
       subject: mailSubject,
       text: toCustomerText,
       html: toCustomerHtml,
-    }
+    };
     // メール送信 to customer
     this.contactUsService.sendMail(sendMailSmtpDto);
   }

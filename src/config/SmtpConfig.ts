@@ -1,4 +1,4 @@
-import 'dotenv/config'
+import 'dotenv/config';
 
 export interface SmtpConfig {
   host: string;
@@ -7,7 +7,7 @@ export interface SmtpConfig {
   auth: {
     user: string;
     pass: string;
-  }
+  };
 }
 
 export function smtpConfig() {
@@ -19,7 +19,7 @@ export function smtpConfig() {
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
-      }
-    }
-  }
+      },
+    },
+  };
 }

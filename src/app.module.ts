@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import { ConfigModule } from '@nestjs/config';
-import { configuration } from './config/Configuration'
+import { configuration } from './config/Configuration';
 import { databaseConfig } from './config/DatabaseConfig';
 import { smtpConfig } from './config/SmtpConfig';
 
@@ -14,7 +14,7 @@ import { ContactUsModule } from './contact-us/contact-us.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: [configuration, databaseConfig, smtpConfig]
+      load: [configuration, databaseConfig, smtpConfig],
     }),
     SmtpModule,
     UsersModule,

@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Logger, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Logger,
+  Query,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -10,13 +20,13 @@ export class UsersController {
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
-    Logger.debug('POST /api/users')
+    Logger.debug('POST /api/users');
     return this.usersService.create(createUserDto);
   }
 
   @Get()
   findAll(@Query() query: ListAllEntities) {
-    Logger.debug('GET /api/users')
+    Logger.debug('GET /api/users');
     return this.usersService.findAll(query);
   }
 
