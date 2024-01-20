@@ -4,9 +4,7 @@ import { SmtpService } from 'src/smtp/smtp.service';
 
 @Injectable()
 export class ContactUsService {
-  constructor(
-    private readonly smtpService: SmtpService
-  ) { }
+  constructor(private readonly smtpService: SmtpService) {}
 
   // create(createContactUsDto: CreateContactUsDto) {
   //   return 'This action adds a new contactUs';

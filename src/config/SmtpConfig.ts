@@ -1,4 +1,4 @@
-import 'dotenv/config'
+import 'dotenv/config';
 
 export interface SmtpConfig {
   host: string;
@@ -7,7 +7,7 @@ export interface SmtpConfig {
   auth: {
     user: string;
     pass: string;
-  }
+  };
 }
 
 export function smtpConfig() {
@@ -15,11 +15,11 @@ export function smtpConfig() {
     smtp: {
       host: process.env.SMTP_HOST,
       port: parseInt(process.env.SMTP_PORT, 10) || 25,
-      secure: process.env.SMTP_SECURE,
+      secure: process.env.SMTP_SECURE === 'true',
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
-      }
-    }
-  }
+      },
+    },
+  };
 }
