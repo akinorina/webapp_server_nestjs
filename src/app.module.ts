@@ -3,7 +3,7 @@ import { AppController } from '~/src/app.controller';
 import { AppService } from '~/src/app.service';
 
 import { ConfigModule } from '@nestjs/config';
-import { configuration } from '~/src/config/Configuration';
+import { configuration } from '~/src/config/configuration';
 import { databaseConfig } from '~/src/config/DatabaseConfig';
 import { smtpConfig } from '~/src/config/SmtpConfig';
 

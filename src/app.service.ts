@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Configuration } from '~/src/config/Configuration';
+import { Configuration } from '~/src/config/configuration';
 import { DatabaseConfig } from '~/src/config/DatabaseConfig';
 
 @Injectable()
