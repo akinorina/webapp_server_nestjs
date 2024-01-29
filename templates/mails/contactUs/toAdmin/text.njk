@@ -1,0 +1,12 @@
+お問い合わせがありましたので、お知らせいたします。
+
+--- お問い合わせ内容 ---
+氏名　　　　　： {{ name | striptags(true) }}
+氏名よみがな　： {{ nameKana | striptags(true) }}
+メールアドレス： {{ email | striptags(true) }}
+メッセージ　　：
+{{ message | striptags(true) | escape }}
+
+---
+
+早急にお返事してください。
