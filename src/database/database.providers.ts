@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { databaseConfig } from '../config/DatabaseConfig';
+import { databaseConfig } from '~/src/config/DatabaseConfig';
 
 // DB設定 取得
 const dbconfig = databaseConfig();

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { SendMailSmtpDto } from 'src/smtp/dto/sendmail-smtp.dto';
-import { SmtpService } from 'src/smtp/smtp.service';
+import { SendMailSmtpDto } from '~/src/smtp/dto/sendmail-smtp.dto';
+import { SmtpService } from '~/src/smtp/smtp.service';
 
 @Injectable()
 export class ContactUsService {

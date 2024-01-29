@@ -1,7 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ContactUsService } from './contact-us.service';
-import { SendMailSmtpDto } from 'src/smtp/dto/sendmail-smtp.dto';
-import { PostContactUsDto } from 'src/contact-us/dto/post-contact-us.dto';
+import { SendMailSmtpDto } from '~/src/smtp/dto/sendmail-smtp.dto';
+import { PostContactUsDto } from '~/src/contact-us/dto/post-contact-us.dto';
 import * as nunjucks from 'nunjucks';
 
 @Controller('api/contact-us')

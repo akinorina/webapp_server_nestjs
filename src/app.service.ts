@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Configuration } from './config/Configuration';
-import { DatabaseConfig } from './config/DatabaseConfig';
+import { Configuration } from '~/src/config/Configuration';
+import { DatabaseConfig } from '~/src/config/DatabaseConfig';
 
 @Injectable()
 export class AppService {
