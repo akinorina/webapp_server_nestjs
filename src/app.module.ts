@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { AppController } from '~/src/app.controller';
+import { AppService } from '~/src/app.service';
 
 import { ConfigModule } from '@nestjs/config';
-import { configuration } from './config/Configuration';
-import { databaseConfig } from './config/DatabaseConfig';
-import { smtpConfig } from './config/SmtpConfig';
+import { configuration } from '~/src/config/configuration';
+import { databaseConfig } from '~/src/config/DatabaseConfig';
+import { smtpConfig } from '~/src/config/SmtpConfig';
 
-import { SmtpModule } from './smtp/smtp.module';
-import { UsersModule } from './users/users.module';
-import { ContactUsModule } from './contact-us/contact-us.module';
+import { SmtpModule } from '~/src/smtp/smtp.module';
+import { UsersModule } from '~/src/users/users.module';
+import { ContactUsModule } from '~/src/contact-us/contact-us.module';
 
 @Module({
   imports: [
